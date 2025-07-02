@@ -8,6 +8,9 @@
         http_response_code(200);
         exit;
     }
+    require 'vendor/autoload.php';
+    use Firebase\JWT\JWT;
+    use Firebase\JWT\Key; 
     require_once "db.php";
     $data = json_decode(file_get_contents("php://input"), true);
     if (!isset($data['username']) || empty(trim($data['username'])) ||
@@ -27,8 +30,16 @@
         echo json_encode(["error" => "Nieprawidłowa nazwa użytkownika lub hasło"]);
         exit;
     }
+    $secret_key = 'tajny_klucz';
+    $payload = [
+        'user_id' => $user['user_id'],
+        'username' => $user['username'],
+        'exp' => time() + 60 * 60 * 24
+    ];
+    $jwt = JWT::encode($payload, $secret_key, 'HS256');
     echo json_encode([
         "message" => "Zalogowano pomyślnie",
+        "token" => $jwt,
         "user" => [
             "user_id" => $user['user_id'],
             "username" => $user['username']

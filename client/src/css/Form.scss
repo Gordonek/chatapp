@@ -5,31 +5,42 @@ form{
     display: flex;
     flex-direction: column;
     gap: 8px;
+    input{
+        background-color: $lightgray;
+        outline: none;
+        border: none;
+        border-bottom: 2px solid $darkgray;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+    }
     input, button{
         width: 350px;
-        padding: 5px;
+        padding: 5px 10px;
         font-size: 20px;
-    }
-    .warnings{
-        height: 30px;
-        display: flex;
-        align-items: center;
-        gap: 10px
-    }
-    .info{
-        font-size: 12px;
-    }
-    .oko{
-        user-select: none;
     }
     button[type=submit]{
         background-color: $green;
         border: none;
         outline: none;
         cursor: pointer;
+        border-radius: 4px;
+
     }
-    .changeForm{
-        color: $blue;
-        cursor: pointer;
+    .warnings{
+        height: 30px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        .changeForm{
+            color: $blue;
+            cursor: pointer;
+        }
+        .info{
+            font-size: 12px;
+        }
+    }
+    .oko{
+        position: absolute;
+        user-select: none;
     }
 }

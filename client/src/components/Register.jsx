@@ -18,6 +18,7 @@ export function Register(props){
             const data = await res.json();
             if (res.ok) {
                 setMessage("Zarejestrowano pomyślnie!");
+                props.setVal(1);
             } else {
                 setMessage(data.error || "Coś poszło nie tak");
             }

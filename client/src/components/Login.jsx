@@ -16,11 +16,11 @@ export function Login(props){
             });
             const data = await res.json();
             if (res.ok) {
+                if (data.token)
+                    localStorage.setItem('token', data.token);
                 setMessage("Zalogowano pomyślnie!");
-                if(data.user.username){
-                    console.log("test")
-                    props.setVal(2);
-                }
+                console.log("ok")
+                props.setVal(2);
             } else {
                 setMessage(data.error || "Coś poszło nie tak");
             }

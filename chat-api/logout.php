@@ -8,6 +8,7 @@
         http_response_code(200);
         exit;
     }
+    
     session_destroy();
     echo json_encode(["message" => "Wylogowano"]);
 ?>
