@@ -1,0 +1,35 @@
+@import "general";
+
+form{
+    margin: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    input, button{
+        width: 350px;
+        padding: 5px;
+        font-size: 20px;
+    }
+    .warnings{
+        height: 30px;
+        display: flex;
+        align-items: center;
+        gap: 10px
+    }
+    .info{
+        font-size: 12px;
+    }
+    .oko{
+        user-select: none;
+    }
+    button[type=submit]{
+        background-color: $green;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+    .changeForm{
+        color: $blue;
+        cursor: pointer;
+    }
+}
