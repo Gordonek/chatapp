@@ -21,12 +21,12 @@ export function Chat(props){
         <>
             <div className="container">
                 <div className="left-sidebar sidebar">
-                    <div className="user">
+                    <div className="main-user">
                         <div className="user-info">
                             <img className="user-avatar" src={defaultavatar} alt="default avatar" />
                             <div className="user-desc">
                                 <span className="name">Jakub Pik</span>
-                                <span className="note">New member</span>
+                                <span className="note">Jestem z epoki lodowcowej</span>
                             </div>
                         </div>
                         <div className="edit">
@@ -34,7 +34,36 @@ export function Chat(props){
                         </div>
                     </div>
                     <div className="members">
-                        {}
+                        <h2>Członkowie</h2>
+                        <div className="users-info">
+                            <div className="user">
+                                <div className="user-info">
+                                    <img className="user-avatar" src={defaultavatar} alt="default avatar" />
+                                    <div className="user-desc">
+                                        <span className="name">Jakub Pik</span>
+                                        <span className="note">New member</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="user">
+                                <div className="user-info">
+                                    <img className="user-avatar" src={defaultavatar} alt="default avatar" />
+                                    <div className="user-desc">
+                                        <span className="name">Jakub Pik</span>
+                                        <span className="note">New member</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="user">
+                                <div className="user-info">
+                                    <img className="user-avatar" src={defaultavatar} alt="default avatar" />
+                                    <div className="user-desc">
+                                        <span className="name">Jakub Pik</span>
+                                        <span className="note">New member</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="conversation">
