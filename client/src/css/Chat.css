@@ -17,6 +17,7 @@
   background-color: #fefefe;
   display: flex;
   flex-direction: row;
+  box-shadow: 0 0 20px 1px #121212;
 }
 .container .sidebar {
   position: relative;
@@ -86,14 +87,16 @@
   cursor: pointer;
 }
 .container .left-sidebar .main-user .edit img {
+  transition: 200ms;
   width: 20px;
   height: 20px;
+  pointer-events: none;
 }
 .container .left-sidebar .main-user .edit:hover {
   background-color: #fefefe;
 }
 .container .left-sidebar .main-user .edit:hover img {
-  transform: scale(1.03);
+  transform: scale(1.1);
 }
 .container .left-sidebar .main-user::after {
   content: "";
@@ -113,7 +116,7 @@
 .container .left-sidebar .members h2 {
   margin-left: 5px;
   margin-bottom: 20px;
-  color: #121212;
+  color: #4CAF50;
 }
 .container .left-sidebar .members .users-info {
   display: flex;
@@ -149,14 +152,174 @@
   color: #121212;
   font-size: 12px;
 }
+.container .left-sidebar .logout {
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .left-sidebar .logout form button {
+  width: 120px;
+  background-color: #F44336;
+  transition: 400ms;
+  color: #fefefe;
+}
+.container .left-sidebar .logout form button:hover {
+  transform: scale(1.03);
+}
 .container .right-sidebar {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
 .container .conversation {
+  position: relative;
   height: 100%;
   padding: 25px;
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.container .conversation .header {
+  color: #4CAF50;
+  padding: 10px 20px 20px;
+  border-bottom: 2px solid rgba(134, 134, 134, 0.5);
+}
+.container .conversation .chat {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+  bottom: 120px;
+}
+.container .conversation .menu-box {
+  position: absolute;
+  background-color: #aac7e7;
+  padding: 20px;
+  height: 100px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .conversation .menu-box .menu {
+  width: 95%;
+  height: 90px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.container .conversation .menu-box .menu .typer {
+  width: 90%;
+  height: 50%;
+  background-color: #fefefe;
+  border-radius: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container .conversation .menu-box .menu .typer .left-side {
+  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px;
+  height: 100%;
+  width: 30px;
+}
+.container .conversation .menu-box .menu .typer form {
+  margin: 0;
+  height: 100%;
+  width: calc(100% - 30px - 140px);
+}
+.container .conversation .menu-box .menu .typer form input {
+  height: 100%;
+  background-color: #fefefe;
+  border: 0;
+  color: #121212;
+}
+.container .conversation .menu-box .menu .typer .right-side {
+  position: relative;
+  height: 100%;
+  width: 140px;
+  border-bottom-right-radius: 50px;
+  border-top-right-radius: 50px;
+}
+.container .conversation .menu-box .menu .typer .right-side form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.container .conversation .menu-box .menu .typer .right-side form input {
+  display: none;
+}
+.container .conversation .menu-box .menu .typer .right-side form button {
+  height: 30px;
+  width: 30px;
+  background-color: #fefefe;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 200ms;
+  transform-origin: center;
+}
+.container .conversation .menu-box .menu .typer .right-side form button img {
+  height: 30px;
+  width: 30px;
+  transform-origin: center;
+  pointer-events: none;
+}
+.container .conversation .menu-box .menu .typer .right-side form button:hover {
+  transform: scale(1.05);
+}
+.container .conversation .menu-box .menu .typer .right-side::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: calc(100% - 16px);
+  background-color: #868686;
+  opacity: 0.5;
+}
+.container .conversation .menu-box .menu .send {
+  height: 65px;
+  width: 65px;
+  background-color: #448AFF;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 400ms;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  transform-origin: center;
+}
+.container .conversation .menu-box .menu .send img {
+  height: 70%;
+  width: 70%;
+  transform-origin: left;
+  pointer-events: none;
+  transform: translateY(-40%) rotate(45deg);
+}
+.container .conversation .menu-box .menu .send:hover {
+  transform: scale(1.05);
 }
 .container .left-sidebar::after {
   content: "";
@@ -164,7 +327,7 @@
   width: 35px;
   height: 100%;
   z-index: 1;
-  opacity: 0.5;
+  opacity: 0.8;
   top: 0;
   left: calc(100% - 20px);
   background: linear-gradient(to right, #e0e0e0, transparent);
@@ -175,7 +338,7 @@
   width: 35px;
   height: 100%;
   z-index: 1;
-  opacity: 0.5;
+  opacity: 0.8;
   top: 0;
   right: calc(100% - 20px);
   background: linear-gradient(to left, #e0e0e0, transparent);

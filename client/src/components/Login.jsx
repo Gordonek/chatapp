@@ -9,7 +9,7 @@ export function Login(props){
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch("http://localhost/chat-api/login.php", {
+            const res = await fetch("http://localhost/chatapp/server/login.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password }),

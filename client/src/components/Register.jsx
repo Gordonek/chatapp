@@ -10,7 +10,7 @@ export function Register(props){
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch("http://localhost/chat-api/register.php", {
+            const res = await fetch("http://localhost/chatapp/server/register.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password }),
