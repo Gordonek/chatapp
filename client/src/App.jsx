@@ -8,6 +8,7 @@ function App() {
   function setVal(v){
     setForm(v);
   }
+  const user = localStorage.getItem("user")
   useEffect(() => {
     const token = localStorage.getItem('token');
     if(token){
@@ -15,10 +16,11 @@ function App() {
     }else{
       setForm(1)
     }
+
   },[])
   function checkForm(){
     if(form==2){
-      return (<Chat setVal={setVal} />);
+      return (<Chat setVal={setVal} user={user?parseInt(user):null}/>);
     }else if(form==1){
       return (<Login setVal={setVal} />)
     }else{

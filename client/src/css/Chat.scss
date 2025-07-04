@@ -154,10 +154,13 @@
             align-items: center;
             form{
                 button{
-                    width: 120px;
+                    width: 160px;
                     background-color: $red;
                     transition: 400ms;
                     color: $white;
+                    padding: 10px 0;
+                    border-radius: 16px;
+                    font-size: 16px;
                 }
                 button:hover{
                     transform: scale(1.03);
@@ -168,6 +171,101 @@
     .right-sidebar{
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .content{
+            height: 90%;
+            width: 100%;
+            .chat-info{
+                width: 100%;
+                height: 40%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                img{
+                    width: 180px;
+                    border-radius: 100px;
+                }
+                span{
+                    font-size: 24px;
+                    font-weight: bold;
+                }
+            }
+            .buttons{
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                height: 20%;
+                gap: 20px;
+                .button{
+                    display: flex;
+                    flex-direction: column;
+                    width: 40%;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 5px;
+                    font-size: 18px;
+                    cursor: pointer;
+                    transition: 400ms;
+                    .img-bg{
+                        background-color: $blandblue;
+                        padding: 20px;
+                        border-radius: 100px;
+                        height: 80px;
+                        img{
+                            width: 40px;
+                            height: 40px;
+                            pointer-events: none;
+                        }
+                    }
+                    span{
+                        user-select: none;
+                    }
+                }
+                .button:hover{
+                    transform: scale(1.02);
+                }
+            }
+            .buttons::after{
+                content: "";
+                position: absolute;
+                height: 100%;
+                width: 2px;
+                border-radius: 10px;
+                background-color: $gray;
+                opacity: 0.5;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .attachments-box{
+                margin-top: 50px;
+                .attachments{
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 20px;
+                    span{
+                        color: $blue;
+                        border: 2px solid $blue;
+                        padding: 10px 20px;
+                        border-radius: 50px;
+                        font-size: 18px;
+                        user-select: none;
+                        cursor: pointer;
+                        transition: 400ms;
+                    }
+                    span:hover{
+                        transform: scale(1.03);
+                    }
+                }
+            }
+        }
     }
     .conversation{
         position: relative;
@@ -187,8 +285,35 @@
             display: flex;
             flex-direction: column;
             width: 100%;
-            padding: 20px;
+            height: calc(100% - 100px - 120px);
             bottom: 120px;
+            left: 0;
+            padding: 20px;
+            gap: 40px;
+            overflow-y: scroll;
+            scrollbar-width: none;
+            .message{
+                background-color: $blandblue;
+                align-self: flex-start;
+                padding: 10px 20px 10px 10px;
+                color: $black;
+                border-radius: 16px 16px 16px 0;
+                max-width: 400px;
+            }
+            .mymessage{
+                align-self: flex-end;
+                background-color: $blue;
+                padding: 10px 10px 10px 20px;
+
+                color: $white;
+                border-radius: 16px 16px 0 16px;
+            }
+            .message:not(.mymessage) + .message:not(.mymessage){
+                margin-top: -35px;
+            }
+            .mymessage + .mymessage{
+                margin-top: -35px;
+            }
         }
         .menu-box{
             position: absolute;
@@ -221,7 +346,7 @@
                         border-bottom-left-radius: 50px;
                         border-top-left-radius: 50px;
                         height: 100%;
-                        width: 30px;
+                        width: 10px;
                     }
                     form{
                         margin: 0;
@@ -260,17 +385,17 @@
                                 display: flex;
                                 justify-content: center;
                                 align-items: center;
-                                transition: 200ms;
-                                transform-origin: center;
                                 img{
                                     height: 30px;
                                     width: 30px;
-                                    transform-origin: center;
+                                    transition: 400ms;
                                     pointer-events: none;
                                 }
                             }
                             button:hover{
-                                transform: scale(1.05);
+                                img{
+                                    transform: scale(1.05);
+                                }
                             }
                         }
                     }
@@ -281,7 +406,7 @@
                         top: 50%;
                         transform: translate(-50%, -50%);
                         width: 2px;
-                        height: calc(100% - 16px);
+                        height: calc(100% - 12px);
                         background-color: $gray;
                         opacity: 0.5;
 
@@ -304,7 +429,7 @@
                         width: 70%;
                         transform-origin:  left;
                         pointer-events: none;   
-                        transform: translateY(-40%) rotate(45deg);
+                        transform: translateY(-34.5%) rotate(45deg);
                     }
                 }
                 .send:hover{

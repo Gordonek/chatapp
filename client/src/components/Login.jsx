@@ -18,9 +18,9 @@ export function Login(props){
             if (res.ok) {
                 if (data.token)
                     localStorage.setItem('token', data.token);
-                setMessage("Zalogowano pomyślnie!");
-                console.log("ok")
-                props.setVal(2);
+                    localStorage.setItem("user", data.user.user_id);
+                    setMessage("Zalogowano pomyślnie!");
+                    props.setVal(2);
             } else {
                 setMessage(data.error || "Coś poszło nie tak");
             }
