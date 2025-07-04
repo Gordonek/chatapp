@@ -1,34 +1,53 @@
 import '../css/Chat.css';
-import { use, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import defaultavatar from "../assets/default-avatar.png";
 import pencil from "../assets/pencil-edit.svg";
-import sendicon from "../assets/send-icon.svg"
-import Attachmenticon from "../assets/attachment-icon.svg"
-import cameraicon from "../assets/camera.svg"
-import chaticon from "../assets/chat-icon.svg"
-import videocallicon from "../assets/videocall-icon.svg"
+import sendicon from "../assets/send-icon.svg";
+import Attachmenticon from "../assets/attachment-icon.svg";
+import cameraicon from "../assets/camera.svg";
+import chaticon from "../assets/chat-icon.svg";
+import videocallicon from "../assets/videocall-icon.svg";
+import arrowdown from "../assets/arrow-down.svg";
 export function Chat(props){
     const [text, setText] = useState("");
     const [messages, setMessages] = useState([]);
     const [temp, setTemp] = useState(0);
+    const [showScrollButton, setShowScrollButton] = useState(false);
     const fileInputRef = useRef(null);
     const photoInputRef = useRef(null);
     const formRef = useRef(null);
-    const msgEndRef = useRef(null);
+    const chatRef = useRef(null);
     const handleButtonSubmit = (e) => {
         if(text === "") return;
         sendMessage();
         temp?setTemp(0):setTemp(1);
-        msgEndRef.current.scrollTop = msgEndRef.current.scrollHeight;
+        chatRef.current.scrollTop = chatRef.current.scrollHeight;
     }
     useEffect(() => {
-        msgEndRef.current.scrollTop = msgEndRef.current.scrollHeight;
+        chatRef.current.scrollTop = chatRef.current.scrollHeight;
     },[messages])
-    const checkScrollHeight = () => {
-        if(msgEndRef.current.scrollTop > msgEndRef.current.height){
-            console.log("good work baby")
-        }
+    const handleToBottom = () => {
+        chatRef.current.scrollTop = chatRef.current.scrollHeight;
     }
+    const handleScroll = () => {
+        const ele = chatRef.current;
+        if(!ele) return;
+        const distanceFromBottom = ele.scrollHeight - ele.scrollTop - ele.clientHeight;
+        setShowScrollButton(distanceFromBottom > 300);
+    }
+    useEffect(() => {
+        setTimeout(() => {
+            chatRef.current.style.scrollBehavior = "smooth";
+        }, 40);
+    }, [])
+    useEffect(() => {
+        const ele = chatRef.current;
+        if (ele) {
+            ele.addEventListener("scroll", handleScroll);
+            return () => ele.removeEventListener("scroll", handleScroll);
+        }
+    }, []);
+
     const sendMessage = async (e) => {
         await fetch("http://localhost/chatapp/server/sendMessage.php", {
             method: "POST",
@@ -137,26 +156,23 @@ export function Chat(props){
                     <div className="header">
                         <h2>Czat grupowy</h2>
                     </div>
-                    <div className="chat" id="chat" ref={msgEndRef}>
+                    <div className="chat" id="chat" ref={chatRef}>
                         {messages.map((msg, i) => (
                             <div key={i} className={(msg.grouped?'message grouped' : 'message') + (msg.mymessage?' mymessage':'')}>
                                 {msg.text}
                             </div>
-                        ))}        
+                        ))} 
                     </div>
+                    <div className={'toBottomButton' + (showScrollButton?' show':'')} id="toBottomButton" onClick={() => handleToBottom()}>
+                        <img src={arrowdown} alt="strzalka w dol" />                                
+                    </div>      
                     <div className="menu-box">
                         <div className="menu">
                             <div className="typer">
                                 <div className="left-side"></div>
                                 <form 
-                                    onSubmit={(e) =>{
-                                        e.preventDefault();
-                                        handleButtonSubmit();
-                                    }} 
-                                    onKeyDown={(e) => {
-                                        if(e.key==="Enter")
-                                            handleButtonSubmit();
-                                    }}
+                                    onSubmit={(e) =>{ e.preventDefault() }} x
+                                    onKeyDown={(e) => { if(e.key==="Enter") handleButtonSubmit() }}
                                 >
                                     <input type="text" value={text} onChange={(e) => setText(e.target.value)} placeholder='Napisz coś..' />
                                 </form>
